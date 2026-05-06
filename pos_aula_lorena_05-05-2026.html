@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Resumo Pós-Aula — Lorena — CZK English</title>
+<style>
+    :root{
+      --page-bg: #f4f7fa;
+      --card-bg: #fff;
+      --accent: #2f86e6;
+      --accent-dark: #1f6fd1;
+      --green: #36b37e;
+      --muted: #6b7280;
+      --border: #e6eef8;
+      --box-radius: 12px;
+      --card-width: 720px;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      background:var(--page-bg);
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px 20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:var(--card-width);
+      background:var(--card-bg);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 6px 22px rgba(33,47,60,0.06);
+      border:1px solid rgba(15,33,64,0.03);
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:8px;
+    }
+
+    .badge{
+      background:linear-gradient(180deg,#fff,#f2fbff);
+      border:1px solid var(--border);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--accent);
+      font-weight:700;
+      font-size:0.85rem;
+    }
+
+    h1{
+      margin:0;
+      font-size:1.3rem;
+      color:#0f1724;
+    }
+
+    .meta{
+      color:var(--muted);
+      font-size:0.92rem;
+      margin-top:6px;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:10px;
+      border:none;
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 6px 14px rgba(47,134,230,0.12);
+    }
+
+    .btn.secondary{
+      background:#fff;
+      color:var(--accent);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+
+    main{margin-top:18px;}
+    section{margin-top:18px;}
+
+    .panel{
+      background:#fbfdff;
+      border-radius:12px;
+      padding:16px;
+      border:1px solid var(--border);
+    }
+
+    .outline-card{
+      border-radius:10px;
+      border:1px solid var(--border);
+      padding:16px;
+      background:#fff;
+    }
+
+    /* Vocabulary boxes */
+    .vocab-grid{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .vocab{
+      flex:1;
+      min-width:220px;
+      border-radius:10px;
+      padding:14px;
+      border:2px solid #dfeefe;
+      background:#fff;
+    }
+
+    .vocab.green{
+      border-color:#c9f3dc;
+      background:#f5fff6;
+    }
+
+    .vocab h3{
+      margin:0;
+      font-size:1rem;
+      color:#154360;
+    }
+
+    .vocab p{
+      margin:8px 0 0 0;
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    /* Transcrição / gravação buttons */
+    .media-row{
+      display:flex;
+      gap:14px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    .media-btn{
+      background:#fff;
+      border:1px solid var(--border);
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:700;
+      color:var(--accent);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      min-width:200px;
+      justify-content:center;
+    }
+
+    /* Homework box */
+    .homework{
+      background:#f3fff6;
+      border:1px solid #d7f5df;
+      border-radius:10px;
+      padding:14px;
+      margin-top:10px;
+    }
+
+    /* ===== TALK TIME – TABELA RETANGULAR ===== */
+    .speaking{
+      margin-top:18px;
+      padding:16px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      border:1px solid var(--border);
+      max-width:640px;
+    }
+
+    .speaking h2{
+      margin:0 0 10px 0;
+      font-size:1.05rem;
+      color:#0f1724;
+    }
+
+    .talk-table{
+      width:100%;
+      border-collapse:collapse;
+      border-radius:10px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #e1e9f5;
+      font-size:0.9rem;
+    }
+
+    .talk-table th,
+    .talk-table td{
+      padding:8px 10px;
+      text-align:left;
+    }
+
+    .talk-table th{
+      background:#eef4ff;
+      color:#1b3556;
+      font-weight:700;
+      border-bottom:1px solid #dde6fa;
+    }
+
+    .row-teacher{
+      background:#e7f2ff; /* azul clarinho */
+    }
+
+    .row-student{
+      background:#e8f7ef; /* verde clarinho */
+    }
+
+    .talk-label{
+      font-weight:700;
+    }
+
+    .talk-percent{
+      font-weight:700;
+      color:#0f1724;
+    }
+
+    .talk-time{
+      color:var(--muted);
+    }
+
+    footer{
+      margin-top:20px;
+      color:var(--muted);
+      font-size:0.9rem;
+      text-align:center;
+    }
+
+    /* responsive */
+    @media (max-width:720px){
+      .card{padding:18px;border-radius:14px;}
+      .vocab-grid{flex-direction:column;}
+      .media-row{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+<article class="card" role="main">
+<header>
+<div>
+<div style="display:flex;gap:10px;align-items:center;">
+<span class="badge">PÓS-AULA</span>
+<h1>Can, Can't e Should — perguntas, conselhos e sintomas</h1>
+</div>
+<div class="meta" style="margin-top:8px;"><strong>Professor:</strong> César  • 
+            <strong>Aluno:</strong> Lorena  • 
+            <strong>Data:</strong> 05/05/2026</div>
+</div>
+<div class="actions">
+<a class="btn" href="#" onclick="window.print();return false;">Imprimir / Salvar PDF</a>
+</div>
+</header>
+<main>
+<section class="panel">
+<p style="margin:0;font-weight:600;color:#08325a;">Resumo da aula sobre <strong>can/can't</strong>, perguntas informativas com <strong>can</strong>, introdução ao modal <strong>should</strong> e vocabulário de sintomas.</p>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Resumo da Aula</h2>
+<div class="outline-card">
+<p style="margin:0 0 8px 0;">
+  Nesta aula, retomamos a diferença de pronúncia e entonação entre <strong>can</strong> e <strong>can't</strong>. O foco foi perceber que, no inglês falado, a diferença nem sempre aparece apenas no som final, mas também na ênfase da frase. Em frases como <em>I can play the piano</em> e <em>I can't play the guitar</em>, treinamos a escuta para identificar se a ideia era positiva ou negativa.
+</p>
+<p style="margin:0 0 8px 0;">
+  Depois, revisamos perguntas informativas com <strong>can</strong>, usando palavras como <em>what, when, why</em> e <em>who</em>. A aula reforçou que, em perguntas com modal, a estrutura precisa inverter a ordem: <span style="font-family:monospace;">question word + can + sujeito + verbo</span>, como em <em>What can we do for dinner?</em> e <em>Who can Tom call?</em>.
+</p>
+<p style="margin:0 0 8px 0;">
+  Também trabalhamos uma situação de diálogo em que uma pessoa não consegue ajudar diretamente, explica o motivo e oferece falar com outra pessoa que pode ajudar. A partir do vídeo, praticamos expressões como <em>Sure, what’s up?</em>, <em>I’m sorry, but I can’t</em> e <em>Maybe she can take her there</em>.
+</p>
+<p style="margin:0;">
+  Na segunda parte da aula, introduzimos o modal <strong>should</strong>, usado para dar conselhos. Esse ponto foi conectado ao vocabulário de sintomas, como <em>a cold, a fever, a headache, a stomachache, a sore throat</em> e <em>a backache</em>. A prática final envolveu ouvir pequenos diálogos, identificar sintomas e escrever conselhos com <em>should</em> ou <em>shouldn't</em>.
+</p>
+</div>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Key Vocabulary</h2>
+<div class="vocab-grid">
+<div class="vocab">
+<h3>Should</h3>
+<p style="margin-top:8px;font-size:0.92rem;color:var(--muted);"><em>(pt) deveria; usado para dar conselho</em><br/><small>You should see a doctor.</small></p>
+</div>
+<div class="vocab green">
+<h3>What's up?</h3>
+<p style="margin-top:8px;font-size:0.92rem;color:var(--muted);"><em>(pt) o que foi? / o que está acontecendo?</em><br/><small>Sure, what's up?</small></p>
+</div>
+</div>
+</section>
+<!-- NOVOS TÓPICOS: VOCABULÁRIO DA AULA, FRASES MODELO, CORREÇÕES -->
+<section>
+<h2 style="margin-bottom:8px;">Vocabulário da aula</h2>
+<div class="outline-card">
+<h3 style="margin-top:0;">Modais e estruturas</h3>
+<ul>
+<li><strong>can</strong> – poder / conseguir / ter habilidade</li>
+<li><strong>can’t</strong> – não poder / não conseguir</li>
+<li><strong>should</strong> – deveria; usado para conselho</li>
+<li><strong>shouldn’t</strong> – não deveria</li>
+<li><strong>modal verbs</strong> – verbos modais; modificam a ideia do verbo principal</li>
+<li><strong>give advice</strong> – dar conselho</li>
+<li><strong>offer help</strong> – oferecer ajuda</li>
+<li><strong>explain why you can’t help</strong> – explicar por que você não pode ajudar</li>
+</ul>
+<h3>Perguntas com can</h3>
+<ul>
+<li><strong>What can we do?</strong> – O que nós podemos fazer?</li>
+<li><strong>When can she go?</strong> – Quando ela pode ir?</li>
+<li><strong>Why can’t we go?</strong> – Por que nós não podemos ir?</li>
+<li><strong>Who can Tom call?</strong> – Para quem / quem o Tom pode ligar?</li>
+</ul>
+<h3>Sintomas e saúde</h3>
+<ul>
+<li><strong>a cold</strong> – um resfriado</li>
+<li><strong>a fever</strong> – uma febre</li>
+<li><strong>a headache</strong> – dor de cabeça</li>
+<li><strong>a stomachache</strong> – dor de estômago / dor de barriga</li>
+<li><strong>a sore throat</strong> – garganta inflamada / dor de garganta</li>
+<li><strong>a backache</strong> – dor nas costas</li>
+<li><strong>ache</strong> – dor / incômodo em alguma parte do corpo</li>
+<li><strong>see a doctor</strong> – ir ao médico / consultar um médico</li>
+<li><strong>stay home</strong> – ficar em casa</li>
+<li><strong>stay out late</strong> – ficar fora até tarde</li>
+<li><strong>take a nap</strong> – tirar um cochilo</li>
+<li><strong>have some tea</strong> – tomar um pouco de chá</li>
+<li><strong>go to work</strong> – ir trabalhar</li>
+</ul>
+<h3>Vocabulário do diálogo e do vídeo</h3>
+<ul>
+<li><strong>Sure, what’s up?</strong> – Claro, o que foi?</li>
+<li><strong>I have a problem.</strong> – Eu tenho um problema.</li>
+<li><strong>Maybe you can help.</strong> – Talvez você possa ajudar.</li>
+<li><strong>I’m sorry, but I can’t.</strong> – Desculpa, mas eu não posso.</li>
+<li><strong>Let me think.</strong> – Deixa eu pensar.</li>
+<li><strong>Maybe she can take her there.</strong> – Talvez ela possa levá-la até lá.</li>
+<li><strong>surprise party</strong> – festa surpresa</li>
+<li><strong>office</strong> – escritório</li>
+<li><strong>daughter</strong> – filha</li>
+<li><strong>son</strong> – filho</li>
+<li><strong>take someone somewhere</strong> – levar alguém a algum lugar</li>
+</ul>
+<h3>Vocabulário extra do final da aula</h3>
+<ul>
+<li><strong>bear</strong> – urso</li>
+<li><strong>wolf</strong> – lobo</li>
+<li><strong>bare hands</strong> – mãos nuas / sem arma</li>
+<li><strong>barefoot</strong> – descalço</li>
+<li><strong>fear</strong> – medo</li>
+<li><strong>pain</strong> – dor</li>
+<li><strong>French fries</strong> – batatas fritas</li>
+<li><strong>chips</strong> – salgadinho / batata em formato de chips</li>
+</ul>
+</div>
+</section>
+<section>
+<h2 style="margin-bottom:8px;">Frases modelo da aula</h2>
+<div class="outline-card">
+<ul>
+<li>I can play the piano.</li>
+<li>I can’t play the guitar.</li>
+<li>What can we do for dinner?</li>
+<li>When can she go to the bank?</li>
+<li>Why can’t we go swimming today?</li>
+<li>Who can Tom call?</li>
+<li>David, I have a problem. Maybe you can help.</li>
+<li>Sure, what’s up?</li>
+<li>I’m sorry, but I can’t.</li>
+<li>Let me think.</li>
+<li>Maybe she can take her there.</li>
+<li>You should stay home today.</li>
+<li>You should see a doctor.</li>
+<li>They shouldn’t stay out late.</li>
+<li>She should have some tea.</li>
+<li>She should take a nap.</li>
+<li>He shouldn’t go to work.</li>
+</ul>
+</div>
+</section>
+<!-- ✅ NOVA SEÇÃO FIXA: CORREÇÕES IMPORTANTES -->
+<section>
+<h2 style="margin-bottom:8px;">Correções importantes</h2>
+<div class="outline-card">
+<ul>
+<li><strong>Entonação de can/can’t:</strong> em <em>I can play the piano</em>, a força costuma cair mais no verbo principal (<em>play</em>). Em <em>I can’t play the guitar</em>, a força fica mais clara no <em>can’t</em>. Esse contraste precisa de treino de escuta.</li>
+<li><strong>Can em perguntas:</strong> lembre da ordem correta: <span style="font-family:monospace;">What/When/Why/Who + can + sujeito + verbo</span>.<br/>✅ <em>What can we do?</em><br/>❌ <em>What we can do?</em></li>
+<li><strong>Who:</strong> <em>who</em> significa <strong>quem</strong>. Ex.: <em>Who can Tom call?</em> = Quem o Tom pode ligar / para quem o Tom pode ligar?</li>
+<li><strong>Son x daughter:</strong> <em>son</em> = filho; <em>daughter</em> = filha. Cuidado para não usar <em>son</em> para os dois.</li>
+<li><strong>Offer x often:</strong> <em>offer</em> = oferecer; <em>often</em> = frequentemente. As palavras são parecidas, mas têm sentidos diferentes.</li>
+<li><strong>Take:</strong> no contexto do vídeo, <em>take her there</em> significa <strong>levá-la até lá</strong>, não apenas “ficar com ela”.</li>
+<li><strong>French fries:</strong> para “batata frita”, use <em>French fries</em>. <em>Chips</em> pode se referir a batata em formato de chips / salgadinho, dependendo do contexto.</li>
+<li><strong>Should:</strong> use <em>should</em> para conselho, não para obrigação forte.<br/>✅ <em>You should see a doctor.</em> = Você deveria ir ao médico.</li>
+<li><strong>Shouldn’t:</strong> forma negativa de <em>should</em>.<br/>✅ <em>He shouldn’t go to work.</em> = Ele não deveria ir trabalhar.</li>
+<li><strong>Ache:</strong> quando aparece depois de uma parte do corpo, indica dor/incômodo: <em>headache</em>, <em>stomachache</em>, <em>backache</em>.</li>
+<li><strong>Stay out late:</strong> significa “ficar fora até tarde”, não apenas “ficar muito tempo”.</li>
+</ul>
+</div>
+</section>
+<!-- ✅ FIM DA NOVA SEÇÃO -->
+<section>
+<h2 style="margin-bottom:8px;">Transcrição &amp; Gravação</h2>
+<div class="media-row">
+<!-- Transcrição sem link (apenas botão) -->
+<a class="media-btn" href="#" role="button">📄 Acessar transcrição</a>
+<!-- Vídeo da aula com o link que você mandou -->
+<a class="media-btn" href="https://youtu.be/LOmoYp40pCs" rel="noopener noreferrer" role="button" style="background:linear-gradient(180deg,#1f6fd1,#2f86e6);color:#fff;border:none;min-width:260px;" target="_blank">
+              🎥 Assistir gravação (acesso privado)
+            </a>
+</div>
+</section>
+<!-- ===== TABELA DE DISTRIBUIÇÃO DE FALA ===== -->
+<section aria-label="Distribuição de fala" class="speaking">
+<h2>Tempo de Fala (Talk Time)</h2>
+<table class="talk-table">
+<thead>
+<tr>
+<th>Quem falou</th>
+<th>Porcentagem</th>
+<th>Duração aproximada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-teacher">
+<td><span class="talk-label">César (Professor)</span></td>
+<td><span class="talk-percent">74%</span></td>
+<td class="talk-time">~37 minutos</td>
+</tr>
+<tr class="row-student">
+<td><span class="talk-label">Lorena</span></td>
+<td><span class="talk-percent">26%</span></td>
+<td class="talk-time">~13 minutos</td>
+</tr>
+</tbody>
+</table>
+</section>
+<!-- ===== FIM TABELA ===== -->
+<section>
+<h2 style="margin-bottom:8px;">Homework</h2>
+<div class="homework">
+<p style="margin:0 0 8px 0;">
+  📌 <strong>Lição de casa:</strong>
+</p>
+<ul style="margin:0 0 6px 18px;padding:0;font-size:0.94rem;color:var(--muted);">
+<li>Ler este pós-aula de <strong>2 a 3 vezes na semana</strong>.</li>
+</ul>
+</div>
+<div style="margin-top:14px;">
+<a class="btn" href="https://wa.me" style="background:#25D366;border-radius:10px;box-shadow:none;">
+              💬 Falar comigo no WhatsApp
+            </a>
+</div>
+</section>
+</main>
+<footer>
+<p style="margin:18px 0 0 0;color:var(--muted);font-size:0.9rem;">
+          © 2025 CZK English • Este conteúdo é exclusivo para fins educacionais. • Suporte: czkenglish@gmail.com
+        </p>
+</footer>
+</article>
+</div>
+</body>
+</html>
